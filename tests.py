@@ -8,7 +8,7 @@ except ImportError:
 
 from cfnresponse import send
 
-class TestGordonContribUtils(unittest.TestCase):
+class TestCfnResponse(unittest.TestCase):
 
     def _event(self):
         return {
