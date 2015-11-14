@@ -12,7 +12,7 @@ def send(event, context, response_status, response_data=None, physical_resource_
         {
             'Status': response_status,
             'Reason': "See the details in CloudWatch Log Stream: " + context.log_stream_name,
-            'Physical_resource_id': physical_resource_id or context.log_stream_name,
+            'PhysicalResourceId': physical_resource_id or context.log_stream_name,
             'StackId': event['StackId'],
             'RequestId': event['RequestId'],
             'LogicalResourceId': event['LogicalResourceId'],
