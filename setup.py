@@ -10,7 +10,7 @@ if sys.version_info < (3, 3):
 
 setup(
     name='cfn-response',
-    version='0.0.1',
+    version='0.0.3',
     url='http://github.com/jorgebastida/cfn-response',
     license='BSD',
     author='Jorge Bastida',
