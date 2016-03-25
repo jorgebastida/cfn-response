@@ -36,3 +36,8 @@ References
 Javascript
 -----------
 If you are looking for this library but for javascript, the aws-lambda javascript runtime already have a cfn-response module available. You can read more about here: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-code.html
+
+Java
+-----
+If you are looking for this library but for Java, check out
+https://github.com/SunRun/cfn-response-java
