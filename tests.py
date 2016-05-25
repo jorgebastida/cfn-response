@@ -1,5 +1,11 @@
+import sys
 import unittest
-import urllib2
+from functools import partial
+
+try:
+    from urllib2 import HTTPError
+except ImportError:
+    from urllib.error import HTTPError
 
 try:
     from mock import patch, Mock, call
@@ -7,6 +13,12 @@ except ImportError:
     from unittest.mock import patch, Mock, call
 
 from cfnresponse import send
+
+if sys.version_info >= (3, 0):
+    open_director_patch = partial(patch, 'urllib.request.OpenerDirector.open')
+else:
+    open_director_patch = partial(patch, 'urllib2.OpenerDirector.open')
+
 
 class TestCfnResponse(unittest.TestCase):
 
@@ -21,7 +33,7 @@ class TestCfnResponse(unittest.TestCase):
     def _context(self):
         return Mock(log_stream_name='log_stream_name')
 
-    @patch('urllib2.OpenerDirector.open')
+    @open_director_patch()
     def test_cfn_send_success(self, open_mock):
         open_mock.return_value = Mock()
         open_mock.return_value.msg = 'OK'
@@ -34,10 +46,10 @@ class TestCfnResponse(unittest.TestCase):
         )
         self.assertTrue(response)
 
-    @patch('urllib2.OpenerDirector.open')
+    @open_director_patch()
     def test_cfn_send_error(self, open_mock):
 
-        class MockHTTPError(urllib2.HTTPError):
+        class MockHTTPError(HTTPError):
             def __init__(self, code=503):
                 self.code = code
 

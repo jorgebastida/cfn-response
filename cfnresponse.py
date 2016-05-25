@@ -1,5 +1,10 @@
-import urllib2
 import json
+
+try:
+    from urllib2 import HTTPError, build_opener, HTTPHandler, Request
+except ImportError:
+    from urllib.error import HTTPError
+    from urllib.request import build_opener, HTTPHandler, Request
 
 
 SUCCESS = "SUCCESS"
@@ -20,8 +25,8 @@ def send(event, context, response_status, reason=None, response_data=None, physi
         }
     )
 
-    opener = urllib2.build_opener(urllib2.HTTPHandler)
-    request = urllib2.Request(event['ResponseURL'], data=response_body)
+    opener = build_opener(HTTPHandler)
+    request = Request(event['ResponseURL'], data=response_body)
     request.add_header('Content-Type', '')
     request.add_header('Content-Length', len(response_body))
     request.get_method = lambda: 'PUT'
@@ -30,6 +35,6 @@ def send(event, context, response_status, reason=None, response_data=None, physi
         print("Status code: {}".format(response.getcode()))
         print("Status message: {}".format(response.msg))
         return True
-    except urllib2.HTTPError, exc:
+    except HTTPError as exc:
         print("Failed executing HTTP request: {}".format(exc.code))
         return False

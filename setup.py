@@ -1,16 +1,8 @@
-import sys
-
-from setuptools import setup, find_packages
-
-tests_require = []
-
-# as of Python >= 3.3 unittest.mock module is maintained within Python.
-if sys.version_info < (3, 3):
-    tests_require.append('mock>=1.0.0')
+from setuptools import setup
 
 setup(
     name='cfn-response',
-    version='0.0.3',
+    version='0.0.4',
     url='http://github.com/jorgebastida/cfn-response',
     license='BSD',
     author='Jorge Bastida',
@@ -25,9 +17,9 @@ setup(
     platforms='any',
     install_requires=[],
     test_suite='tests',
-    tests_require=tests_require,
     classifiers=[
         'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 3',
         'Development Status :: 4 - Beta',
         'Environment :: Console',
         'Intended Audience :: Developers',
