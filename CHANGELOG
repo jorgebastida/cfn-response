@@ -2,3 +2,4 @@
 ======
 - Add python3 support
 - Add tox
+- Add travis support
