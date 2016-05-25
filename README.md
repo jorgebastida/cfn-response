@@ -1,6 +1,8 @@
 cfn-response
 ==============
 
+[![Build Status](https://travis-ci.org/jorgebastida/cfn-response.svg?branch=master)](https://travis-ci.org/jorgebastida/cfn-response)
+
 cfn-response is a micro package which exposes some helpers to talk with CloudFormation from within python Lambda functions. This package is intentionally small in order to be embedded lambda functions.
 
 If you are looking to create aws-lambda backed custom CloudFormation resources using python, you are going to need this.
